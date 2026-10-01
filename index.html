@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+
+<style>
+
+body {
+    margin: 0;
+    background: transparent;
+}
+
+.contenedor {
+    width: 100%;
+    max-width: 1100px;
+    margin: auto;
+}
+
+svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+}
+
+/* =====================================================
+   ELECTRONES
+   ===================================================== */
+
+.electron {
+    fill: #1565C0;
+    stroke: #0D47A1;
+    stroke-width: 2;
+}
+
+.electron-symbol {
+    fill: white;
+    font-family: Arial, sans-serif;
+    font-size: 22px;
+    font-weight: bold;
+    text-anchor: middle;
+    dominant-baseline: middle;
+}
+
+/* =====================================================
+   CONDUCTOR
+   Movimiento rápido
+   ===================================================== */
+
+.electron-conductor {
+    animation: moverConductor 3s linear infinite;
+}
+
+@keyframes moverConductor {
+
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(590px);
+    }
+
+}
+
+/* =====================================================
+   SEMICONDUCTOR
+   Movimiento más lento
+   ===================================================== */
+
+.electron-semiconductor {
+    animation: moverSemi 7s linear infinite;
+}
+
+@keyframes moverSemi {
+
+    0% {
+        transform: translateX(0);
+    }
+
+    65% {
+        transform: translateX(260px);
+    }
+
+    75% {
+        transform: translateX(275px);
+    }
+
+    100% {
+        transform: translateX(590px);
+    }
+
+}
+
+/* =====================================================
+   AISLANTE
+   Electron casi inmóvil
+   ===================================================== */
+
+.electron-aislante {
+    animation: moverAislante 5s ease-in-out infinite;
+}
+
+@keyframes moverAislante {
+
+    0%, 100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(18px);
+    }
+
+}
+
+/* =====================================================
+   BRILLO
+   ===================================================== */
+
+.brillo {
+    filter: drop-shadow(0 0 5px rgba(21,101,192,.35));
+}
+
+/* =====================================================
+   PEQUEÑAS VIBRACIONES
+   ===================================================== */
+
+.vibracion {
+    animation: vibrar 2.5s ease-in-out infinite;
+}
+
+@keyframes vibrar {
+
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-3px);
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+<svg
+    viewBox="0 0 1100 650"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-label="Comportamiento eléctrico de conductores, semiconductores y aislantes"
+>
+
+<defs>
+
+    <linearGradient id="material" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#F9A825"/>
+        <stop offset="50%" stop-color="#FFD54F"/>
+        <stop offset="100%" stop-color="#F9A825"/>
+    </linearGradient>
+
+    <linearGradient id="conductorMaterial" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#FFB300"/>
+        <stop offset="50%" stop-color="#FFD54F"/>
+        <stop offset="100%" stop-color="#FFB300"/>
+    </linearGradient>
+
+</defs>
+
+
+<!-- =====================================================
+     CONDUCTOR
+     ===================================================== -->
+
+<g transform="translate(0,80)">
+
+    <rect
+        x="330"
+        y="20"
+        width="600"
+        height="100"
+        rx="50"
+        fill="url(#conductorMaterial)"
+    />
+
+    <ellipse
+        cx="630"
+        cy="70"
+        rx="260"
+        ry="28"
+        fill="#FFF176"
+        opacity=".28"
+    />
+
+    <g class="brillo">
+
+        <g class="electron-conductor">
+
+            <circle
+                class="electron"
+                cx="350"
+                cy="70"
+                r="20"
+            />
+
+            <text
+                class="electron-symbol"
+                x="350"
+                y="70"
+            >
+                e⁻
+            </text>
+
+        </g>
+
+        <g class="electron-conductor"
+           style="animation-delay:-1s">
+
+            <circle
+                class="electron"
+                cx="350"
+                cy="70"
+                r="20"
+            />
+
+            <text
+                class="electron-symbol"
+                x="350"
+                y="70"
+            >
+                e⁻
+            </text>
+
+        </g>
+
+        <g class="electron-conductor"
+           style="animation-delay:-2s">
+
+            <circle
+                class="electron"
+                cx="350"
+                cy="70"
+                r="20"
+            />
+
+            <text
+                class="electron-symbol"
+                x="350"
+                y="70"
+            >
+                e⁻
+            </text>
+
+        </g>
+
+    </g>
+
+</g>
+
+
+<!-- =====================================================
+     SEMICONDUCTOR
+     ===================================================== -->
+
+<g transform="translate(0,260)">
+
+    <rect
+        x="330"
+        y="20"
+        width="600"
+        height="100"
+        rx="50"
+        fill="url(#material)"
+    />
+
+    <rect
+        x="620"
+        y="20"
+        width="55"
+        height="100"
+        rx="27"
+        fill="#E65100"
+        opacity=".35"
+    />
+
+    <g transform="translate(640,70)">
+
+        <circle
+            r="27"
+            fill="#F57C00"
+        />
+
+        <text
+            x="0"
+            y="1"
+            text-anchor="middle"
+            dominant-baseline="middle"
+            font-family="Arial, sans-serif"
+            font-size="13"
+            font-weight="bold"
+            fill="white"
+        >
+            ↓
+        </text>
+
+    </g>
+
+    <g class="brillo">
+
+        <g class="electron-semiconductor">
+
+            <circle
+                class="electron"
+                cx="350"
+                cy="70"
+                r="20"
+            />
+
+            <text
+                class="electron-symbol"
+                x="350"
+                y="70"
+            >
+                e⁻
+            </text>
+
+        </g>
+
+        <g class="electron-semiconductor"
+           style="animation-delay:-3s">
+
+            <circle
+                class="electron"
+                cx="350"
+                cy="70"
+                r="20"
+            />
+
+            <text
+                class="electron-symbol"
+                x="350"
+                y="70"
+            >
+                e⁻
+            </text>
+
+        </g>
+
+    </g>
+
+</g>
+
+
+<!-- =====================================================
+     AISLANTE
+     ===================================================== -->
+
+<g transform="translate(0,440)">
+
+    <rect
+        x="330"
+        y="20"
+        width="600"
+        height="100"
+        rx="50"
+        fill="url(#material)"
+        opacity=".82"
+    />
+
+    <rect
+        x="610"
+        y="20"
+        width="75"
+        height="100"
+        rx="35"
+        fill="#37474F"
+        opacity=".32"
+    />
+
+    <g transform="translate(650,70)">
+
+        <circle
+            r="29"
+            fill="#C62828"
+        />
+
+        <text
+            x="0"
+            y="1"
+            text-anchor="middle"
+            dominant-baseline="middle"
+            font-family="Arial, sans-serif"
+            font-size="11"
+            font-weight="bold"
+            fill="white"
+        >
+            STOP
+        </text>
+
+    </g>
+
+    <g class="brillo">
+
+        <g class="electron-aislante">
+
+            <circle
+                class="electron"
+                cx="350"
+                cy="70"
+                r="20"
+            />
+
+            <text
+                class="electron-symbol"
+                x="350"
+                y="70"
+            >
+                e⁻
+            </text>
+
+        </g>
+
+        <g class="electron-aislante"
+           style="animation-delay:-2s">
+
+            <circle
+                class="electron"
+                cx="470"
+                cy="70"
+                r="20"
+            />
+
+            <text
+                class="electron-symbol"
+                x="470"
+                y="70"
+            >
+                e⁻
+            </text>
+
+        </g>
+
+    </g>
+
+</g>
+
+</svg>
+
+</div>
+
+</body>
+</html>
